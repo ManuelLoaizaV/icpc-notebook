@@ -1,29 +1,28 @@
-// Fenwick Tree for point-update-range-sum queries over 0-indexed range [0, tree_n).
-// Requires (T, +, T()) to be an abelian group because Query and Update combines segments in arbitrary order.
+// Fenwick Tree for point-update-range-sum queries over range [0, tree_n).
+// Requires (T, +) to be an abelian group because Query and Update combines segments in arbitrary order.
 //
-// With nonnegative values, this tree can represent a Red-Black Tree over [0, tree_n).
+// This tree supports Red-black Tree operations over elements in [0, tree_n).
 //
-// Set over [0, tree_n):
-//  insert(x): Set(x, 1)
-//  erase(x): Set(x, 0)
-//  count(x): Get(x)
+// Set:
+// - insert(x): Set(x, 1).
+// - erase(x): Set(x, 0).
+// - count(x): Get(x).
 //
-// Multiset over [0, tree_n):
-//  insert(x): Update(x, 1)
-//  erase(x): Update(x, -1) if Get(x) > 0
-//  count(x): Get(x)
+// Multiset:
+// - insert(x): Update(x, 1).
+// - erase(x): Update(x, -1) if Get(x) > 0.
+// - count(x): Get(x).
 //
-// Order Statistics tree:
-//  order_of_key(k): Query(k) returns the count of elements < k.
-//  find_by_order(k): FindLastPrefix(k) returns k-th smallest element (0-indexed).
-//                    Returns tree_n if k >= ost.size().
+// Order Statistic Tree:
+// - order_of_key(k): Query(k) returns the count of elements < k.
+// - find_by_order(k): FindLastPrefix(k) returns k-th smallest element (0-indexed). Returns tree_n if k >= ost.size().
 template<typename T>
 struct FenwickTree {
   int tree_n = 0;
   T tree_sum = T();
   vector<T> tree;
-  // Creates a tree to represent n identity elements.
-  // Time complexity: O(n)
+  // Creates a tree to represent n values, each equal to the identity element.
+  // Time complexity: O(n).
   FenwickTree(int n = -1) { if (n >= 0) Init(n); }
   void Init(int n) {
     tree_n = n;
@@ -31,7 +30,7 @@ struct FenwickTree {
     tree.assign(tree_n + 1, T());
   }
 
-  // Builds the tree from a.
+  // Builds the tree from an array a with size tree_n.
   // Time complexity: O(n).
   template<typename A>
   void Build(const A& a) {

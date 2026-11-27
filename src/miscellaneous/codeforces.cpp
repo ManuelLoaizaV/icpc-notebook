@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <cassert>
 
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr << "[" << #x << "]: " << x << endl
@@ -10,20 +11,12 @@ using namespace std;
 
 typedef long long Long;
 typedef long double Double;
-typedef pair<Long, Long> Pair;
 
-const int N = 1e6;
-const Long MOD = 998244353LL;
-const Long INF = 1e18;
 const Double PI = acos(-1);
 const Double EPS = 1e-9;
-
-const char A = 'a';
-const char ZERO = '0';
-const char ENDL = '\n';
-
 const string YES = "YES";
 const string NO = "NO";
+const char ENDL = '\n';
 
 void Solve(void) {
 }

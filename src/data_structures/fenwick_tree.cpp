@@ -21,6 +21,7 @@ struct FenwickTree {
   int tree_n = 0;
   T tree_sum = T();
   vector<T> tree;
+
   // Creates a tree to represent n values, each equal to the identity element.
   // Time complexity: O(n).
   FenwickTree(int n = -1) { if (n >= 0) Init(n); }
@@ -113,9 +114,8 @@ struct FenwickTree {
     return std::bit_width(n) - 1;
   }
 
-  // Returns the largest prefix length p in [0, tree_n] such that Query(p) <= sum.
+  // Returns the largest prefix length such that Query(prefix) <= sum.
   // Returns -1 if no such prefix exists (sum < 0).
-  // Returns tree_n if sum >= tree_sum.
   // Time complexity: O(lg n).
   int FindLastPrefix(T sum) const {
     if (sum < T()) return -1;
